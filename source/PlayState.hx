@@ -13,6 +13,7 @@ import flixel.FlxSubState;
 import openfl.Assets;
 import haxe.Json;
 import flixel.math.FlxMath;
+import Paths;
 
 using StringTools;
 
@@ -95,23 +96,23 @@ class PlayState extends FlxUIState
 
     override function create() // 185
     {
-        avgScore = new FlxSprite(FlxG.width - 300, 0).loadGraphic("assets/images/ratings/perfect.png");
+        avgScore = new FlxSprite(FlxG.width - 300, 0).loadGraphic(Paths.image('ratings/perfect');
         avgScore.scale.set(0.5, 0.5);
         burgerTxt = new FlxText(FlxG.width - 300, 150, 300, "0 BURGERS", 35);
         burgerTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2, 1);
         burgerTxt.color = FlxColor.WHITE;
         burgerTxt.alignment = CENTER;
-        add(new FlxSprite().loadGraphic('assets/images/kitch.png'));
-        add(new FlxSprite(97, 431).loadGraphic('assets/images/belt.png'));
-        var blu:FlxSprite = new FlxSprite(97, 431).loadGraphic('assets/images/belt.png');
+        add(new FlxSprite().loadGraphic(Paths.image('kitch')));
+        add(new FlxSprite(97, 431).loadGraphic(Paths.image('belt')));
+        var blu:FlxSprite = new FlxSprite(97, 431).loadGraphic(Paths.image('belt'));
         blu.color = FlxColor.BLUE;
         blu.alpha = 0.5;
         add(blu);
-        var dark:FlxSprite = new FlxSprite(97, 431).loadGraphic('assets/images/belt.png');
+        var dark:FlxSprite = new FlxSprite(97, 431).loadGraphic(Paths.image('belt'));
         dark.color = FlxColor.BLACK;
         dark.alpha = 0.9;
         add(dark);
-        add(new FlxSprite(-516, 546).loadGraphic('assets/images/belt.png'));
+        add(new FlxSprite(-516, 546).loadGraphic(Paths.image('belt')));
 
         flipping_burgers = new FlxTypedGroup<FlxSprite>();
         add(flipping_burgers);
@@ -119,7 +120,7 @@ class PlayState extends FlxUIState
         kade = new KadeDev(FlxG.width - 818 + 150, FlxG.height - 755 + 100);
         add(kade);
 
-        FlxG.sound.playMusic('assets/music/song.${TitleState.ext}');
+        FlxG.sound.playMusic(Paths.music('song'));
         FlxG.sound.music.looped = false;
         FlxG.sound.music.onComplete = function() FlxG.switchState(new TitleState());
 
@@ -139,7 +140,7 @@ class PlayState extends FlxUIState
 
         for (i in 0...3)
         {
-            var thing:FlxSprite = new FlxSprite(25, 150 * i).loadGraphic('assets/images/burgIcons.png', true, 295, 332);
+            var thing:FlxSprite = new FlxSprite(25, 150 * i).loadGraphic(Paths.image('burgIcons')), true, 295, 332);
             thing.animation.add('idle', [0], 0, false);
             thing.animation.add('lose', [1], 0, false);
             thing.animation.play('idle');
@@ -239,7 +240,7 @@ class PlayState extends FlxUIState
 
     public static function loadSong(song:String):KadeDevsTunes
     {
-        var rawJson = Assets.getText('assets/data/$song.json').trim();
+        var rawJson = Paths.file('data/$song.json').trim();
 
 		while (!rawJson.endsWith("}"))
 		{
@@ -290,7 +291,7 @@ class PlayState extends FlxUIState
 			startDelay: Conductor.crochet * 0.001
 		});
         var flip:FlxSprite = new FlxSprite(kade.x + 105, kade.y + 75);
-        flip.frames = FlxAtlasFrames.fromSparrow('assets/images/flipped_burger.png', 'assets/images/flipped_burger.xml');
+        flip.frames = FlxAtlasFrames.fromSparrow(Paths.getSparrowAtlas('flipped_burger.png'));
         flip.animation.addByPrefix('idle', 'burgflip', 24, false);
         flip.animation.play('idle');
         flip.animation.finishCallback = function(s:String) burgsFlipped.push(flip);

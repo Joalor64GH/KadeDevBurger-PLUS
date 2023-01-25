@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxSprite;
 import funkin.Conductor;
+import Paths;
 
 class Burger extends FlxSprite
 {
@@ -18,7 +19,7 @@ class Burger extends FlxSprite
         super(x, y);
         this.flipTime = flipTime;
 
-        loadGraphic('assets/images/burger.png');
+        loadGraphic(Paths.image('burger'));
         setGraphicSize(141);
         updateHitbox();
         antialiasing = true;

@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.system.FlxSound;
+import Paths;
 
 class PauseSubState extends FlxUISubState
 {
@@ -25,7 +26,7 @@ class PauseSubState extends FlxUISubState
 
     override function create()
     {
-        pauseMusic = new FlxSound().loadEmbedded('assets/music/pause.${TitleState.ext}', true, true);
+        pauseMusic = new FlxSound().loadEmbedded(Paths.music('pause')), true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
@@ -35,7 +36,7 @@ class PauseSubState extends FlxUISubState
         bg.alpha = 0.6;
         add(bg);
 
-        dev = new FlxSprite(880, FlxG.height).loadGraphic('assets/images/dude1.png');
+        dev = new FlxSprite(880, FlxG.height).loadGraphic(Paths.image('dude1'));
         dev.setGraphicSize(400);
         dev.updateHitbox();
         dev.flipX = true;

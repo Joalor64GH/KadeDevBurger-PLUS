@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.system.FlxSound;
+import Paths;
 
 class LoseSubState extends FlxUISubState
 {
@@ -22,24 +23,24 @@ class LoseSubState extends FlxUISubState
         var red:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.RED);
         add(red);
 
-        veloper = new FlxSprite().loadGraphic('assets/images/pissyKade.png');
+        veloper = new FlxSprite().loadGraphic(Paths.image('pissyKade'));
         veloper.screenCenter();
         veloper.scale.set(0, 0);
         add(veloper);
 
-        var loseTxt:FlxSprite = new FlxSprite().loadGraphic('assets/images/youLose.png');
+        var loseTxt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('youLose'));
         loseTxt.screenCenter();
         loseTxt.setGraphicSize(696);
         loseTxt.alpha = 0;
         add(loseTxt);
 
-        FlxG.sound.play('assets/sounds/death.${TitleState.ext}');
+        FlxG.sound.play(Paths.image('death'));
 
         FlxTween.tween(red, {alpha: 0.15}, 1, {ease: FlxEase.quadOut, onComplete: function(twn:FlxTween) {
-            FlxG.sound.play('assets/sounds/lose.${TitleState.ext}');
+            FlxG.sound.play(Paths.sound('lose'));
             FlxTween.tween(veloper, {"scale.x": 0.65, "scale.y": 0.65}, 0.35, {ease: FlxEase.quadIn, startDelay: 0.25, onComplete: function(twn:FlxTween) {
                 FlxTween.tween(veloper, {"scale.x": 0.55, "scale.y": 0.55}, 0.45, {ease: FlxEase.quadOut, onComplete: function(twn:FlxTween) {
-                    FlxG.sound.playMusic('assets/music/loser.${TitleState.ext}', 0);
+                    FlxG.sound.playMusic(Paths.music('loser')), 0);
 				    FlxG.sound.music.fadeIn(1, 0, 0.4);
                     canShrinkKade = true;
                     FlxTween.tween(loseTxt, {alpha: 1}, 1.45, {ease: FlxEase.circOut});

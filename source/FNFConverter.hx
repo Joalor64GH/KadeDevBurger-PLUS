@@ -9,6 +9,7 @@ import openfl.events.IOErrorEvent;
 import openfl.media.Sound;
 import openfl.net.FileReference;
 import PlayState.KadeDevsTunes;
+import Paths;
 
 using StringTools;
 
@@ -36,7 +37,7 @@ class FNFConverter
             "bpm": 100
         }
         pooping = [];
-        var rawJson = File.getContent('assets/data/$song.json').trim();
+        var rawJson = Paths.file('data/$song.json').trim();
 
 		while (!rawJson.endsWith("}"))
 		{

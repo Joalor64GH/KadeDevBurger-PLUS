@@ -16,17 +16,15 @@ class TitleState extends FlxUIState
     var kade:KadeDev;
     static var initialized:Bool = false;
 
-    public static var ext:String = #if web 'mp3' #else 'ogg'#end ;
-
     override function create()
     {
-        add(new FlxSprite().loadGraphic('assets/images/kitch1.png'));
+        add(new FlxSprite().loadGraphic(Paths.image('kitch1')));
 
-        var logo:FlxSprite = new FlxSprite().loadGraphic('assets/images/logo.png');
+        var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
         logo.angle = -10;
         add(logo);
 
-        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic('assets/images/3dBurger.png', true, 480, 480);
+        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic(Paths.image('3dBurger')), true, 480, 480);
         burger.animation.add('spin', [for (i in 0...45) i], 24, true);
         burger.animation.play('spin');
         add(burger);
@@ -39,7 +37,7 @@ class TitleState extends FlxUIState
 
         FlxG.mouse.visible = false;
 
-        FlxG.sound.playMusic('assets/music/title.$ext');
+        FlxG.sound.playMusic(Paths.music('title'));
 
         super.create();
 
@@ -66,7 +64,7 @@ class TitleState extends FlxUIState
 
     function init():Void
     {
-		var diamond:FlxGraphic = FlxGraphic.fromAssetKey('assets/images/burger.png');
+		var diamond:FlxGraphic = FlxGraphic.fromAssetKey(Paths.image('burger.png'));
 		diamond.persist = true;
 		diamond.destroyOnNoUse = false;
 

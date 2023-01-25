@@ -10,6 +10,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
 import flixel.graphics.FlxGraphic;
 import openfl.Assets;
+import Paths;
 
 class TitleState extends FlxUIState
 {
@@ -24,7 +25,7 @@ class TitleState extends FlxUIState
         logo.angle = -10;
         add(logo);
 
-        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic(Paths.image('3dBurger')), true, 480, 480);
+        var burger:FlxSprite = new FlxSprite(70, 275).loadGraphic(Paths.image('3dBurger')), 480, 480);
         burger.animation.add('spin', [for (i in 0...45) i], 24, true);
         burger.animation.play('spin');
         add(burger);
@@ -56,7 +57,7 @@ class TitleState extends FlxUIState
 
         #if !web
         if (FlxG.keys.justPressed.SEVEN)
-            FNFConverter.convert(Assets.getText('assets/data/SONG_TO_CONVERT.txt'));
+            FNFConverter.convert(Paths.txt('SONG_TO_CONVERT'));
         #end
         
         super.update(t);

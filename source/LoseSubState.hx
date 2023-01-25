@@ -34,7 +34,7 @@ class LoseSubState extends FlxUISubState
         loseTxt.alpha = 0;
         add(loseTxt);
 
-        FlxG.sound.play(Paths.image('death'));
+        FlxG.sound.play(Paths.sound('death'));
 
         FlxTween.tween(red, {alpha: 0.15}, 1, {ease: FlxEase.quadOut, onComplete: function(twn:FlxTween) {
             FlxG.sound.play(Paths.sound('lose'));
